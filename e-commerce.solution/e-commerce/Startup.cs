@@ -18,6 +18,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using e_commerce.Helpers;
+using e_commerce.Middleware;
+using e_commerce.Errors;
+using e_commerce.Extensions;
 
 namespace e_commerce
 {
@@ -37,16 +40,12 @@ namespace e_commerce
               .AddEntityFrameworkStores<eCommerceContext>()
               .AddDefaultTokenProviders();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "e_commerce", Version = "v1" });
-            });
+            services.AddSwaggerDocumentation();
             services.AddDbContext<eCommerceContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("local")));
 
             //services adding
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+            services.AddApplicationServices();
             services.AddAutoMapper(typeof(MappingProfiles));
         }
 
@@ -55,10 +54,11 @@ namespace e_commerce
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "e_commerce v1"));
+                app.UseMiddleware<ExceptionMiddleware>();
             }
+
+
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
 
@@ -66,6 +66,8 @@ namespace e_commerce
             app.UseStaticFiles();
 
             app.UseAuthorization();
+
+            app.UseSwaggerDocumentation();
 
             app.UseEndpoints(endpoints =>
             {
