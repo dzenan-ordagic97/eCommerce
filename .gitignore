@@ -7,3 +7,4 @@ obj
 *.jpg
 *.png
 .vs
+appsettings.json
