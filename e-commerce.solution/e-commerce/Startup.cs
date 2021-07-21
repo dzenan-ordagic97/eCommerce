@@ -1,5 +1,3 @@
-using Core.Entities;
-using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +19,7 @@ using e_commerce.Helpers;
 using e_commerce.Middleware;
 using e_commerce.Errors;
 using e_commerce.Extensions;
+using Core.Domain.Entities;
 
 namespace e_commerce
 {

@@ -1,6 +1,6 @@
-﻿using Core.Entities;
-using Core.Interfaces;
-using Core.Specifications;
+﻿using Core.Domain.Entities;
+using Core.DomainServices.Interfaces;
+using Core.DomainServices.Specifications;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -41,7 +41,7 @@ namespace Infrastructure.Data
 
         public IQueryable<T> ApplySpecification(ISpecification<T> specification)
         {
-            return SepcificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), specification);
+            return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), specification);
         }
     }
 }

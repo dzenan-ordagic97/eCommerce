@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Core.Entites;
-using Core.Interfaces;
-using Core.Specifications;
+using Core.Domain.Entities;
+using Core.DomainServices.Interfaces;
+using Core.DomainServices.Specifications;
 using e_commerce.DTOs;
 using e_commerce.Errors;
 using Infrastructure.Data;
@@ -31,9 +31,9 @@ namespace e_commerce.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts(string sort, int? brandId, int? typeId)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(sort, brandId, typeId);
             var products = await this.productsRepo.ListAsync(spec);
 
             return Ok(mapper.Map<IReadOnlyList<Product>,IReadOnlyList<ProductToReturnDto>>(products));

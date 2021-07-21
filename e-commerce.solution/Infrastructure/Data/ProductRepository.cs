@@ -1,5 +1,5 @@
-﻿using Core.Entites;
-using Core.Interfaces;
+﻿using Core.Domain.Entities;
+using Core.DomainServices.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
         {
-            return await _context.ProductBrand.ToListAsync();
+            return (IReadOnlyList<ProductBrand>)await _context.ProductBrand.ToListAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
@@ -42,7 +42,7 @@ namespace Infrastructure.Data
 
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
         {
-            return await _context.ProductType.ToListAsync();
+            return (IReadOnlyList<ProductType>)await _context.ProductType.ToListAsync();
         }
     }
 }

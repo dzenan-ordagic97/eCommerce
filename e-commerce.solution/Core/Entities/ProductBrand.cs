@@ -1,6 +1,5 @@
-﻿using Core.Entities;
-
-namespace Core.Entites
+﻿
+namespace Core.Domain.Entities
 {
     public class ProductBrand : BaseEntity
     {

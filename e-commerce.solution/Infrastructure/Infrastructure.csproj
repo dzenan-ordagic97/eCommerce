@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+    <Folder Include="Data\SeedData\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\SeedData\" />
+    <ProjectReference Include="..\Core.DomainServices\Core.DomainServices.csproj" />
   </ItemGroup>
 
 </Project>

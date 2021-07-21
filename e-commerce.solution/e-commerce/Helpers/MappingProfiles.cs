@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Core.Entites;
+using Core.Domain.Entities;
 using e_commerce.DTOs;
 using System;
 using System.Collections.Generic;

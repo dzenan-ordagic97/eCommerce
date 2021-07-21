@@ -1,4 +1,4 @@
-﻿using Core.Interfaces;
+﻿using Core.DomainServices.Interfaces;
 using e_commerce.Errors;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;

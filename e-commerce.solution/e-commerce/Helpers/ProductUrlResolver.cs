@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Core.Entites;
+using Core.Domain.Entities;
 using e_commerce.DTOs;
 using Microsoft.Extensions.Configuration;
 using System;
